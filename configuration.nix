@@ -14,9 +14,9 @@
     vim
     discord
     slack
-    steam
-    steam-run
-    openssl
+    #steam
+    #steam-run
+    #openssl
     #opendrop
     #owl
     #firefox
@@ -41,14 +41,14 @@
     auto-cpufreq
     caprine-bin
     displaylink
-    #geekbench
+    geekbench
     quartus-prime-lite
     sqldeveloper
     cpuid
     pinta
     tetex
     latexrun
-    virt-manager
+    #virt-manager
     #libvirt
     teams
     #wpsoffice
@@ -60,12 +60,16 @@
     winetricks
     wineWowPackages.stable
     parsec-bin
-    intel-media-driver
-    intel-gpu-tools
+    #intel-media-driver
+    #intel-gpu-tools
     auto-cpufreq
     p3x-onenote
     blackbox-terminal
     plex-media-player
+    refind
+    #electron
+    #mesa
+    gparted
   ];
 
   nixpkgs.config.allowUnfree = true; 
@@ -149,7 +153,7 @@
 
   environment.shellAliases = {
     config-nix = "sudo vim /etc/nixos/configuration.nix";
-    saltbox = "ssh seed@jchin.au -p 2222";
+    saltbox = "ssh seed@plex.jchin.au -p 2222";
   };
 
   environment.variables = {
@@ -158,6 +162,7 @@
     NIXPKGS_ALLOW_UNFREE="1";
     EDITOR = "vim";
     #GDK_FONT_SCALE = "2.0";
+    #NIXOS_OZONE_WL = "1";
   };
 
   # Configure keymap in X11
