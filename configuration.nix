@@ -42,7 +42,7 @@
     caprine-bin
     displaylink
     geekbench
-    quartus-prime-lite
+    #quartus-prime-lite
     sqldeveloper
     cpuid
     pinta
@@ -50,7 +50,7 @@
     latexrun
     #virt-manager
     #libvirt
-    teams
+    #teams
     #wpsoffice
     softmaker-office
     onlyoffice-bin
@@ -70,9 +70,18 @@
     #electron
     #mesa
     gparted
+    #wgnord
+    super-slicer-latest
+    gh
   ];
 
   nixpkgs.config.allowUnfree = true; 
+
+  #home-manager.sharedModules = [{
+  #  home.stateVersion = "23.11";
+  #}];
+
+  #home-manager.users.jonathan
 
   systemd.packages = [ pkgs.auto-cpufreq ];
   systemd.services.auto-cpufreq.path = with pkgs; [ bash coreutils ];
@@ -82,6 +91,7 @@
       <nixos-hardware/framework/13th-gen-intel>
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nixfiles/nixos
     ];
 
   services.tlp.settings = {
@@ -105,9 +115,9 @@
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
   system.autoUpgrade.allowReboot = false;
-  services.fwupd.enable = true;
+  services.fwupd.enable = false;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -115,6 +125,9 @@
 
   #boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernel.sysctl."kernel.sysrq" = 246;
+  boot.swraid.enable = false;
 
   networking.hostName = "Framework-NixOS"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -238,5 +251,23 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  home-manager.sharedModules = [{
+    home.stateVersion = "23.05";
+  }];
+
+  nova.profile = "personal";
+  # "personal" aims to be flexible for use on regular NixOS installations.
+  # Use "shared" to enable all the things on a team device - branding, the
+  # standard user and desktop environment, etc.
+  # These things can all be enabled manually even on "personal" configurations,
+  # e.g. with nova.desktop.enable = true.
+
+  nova.substituters.nova.password = "tFH6J!#HhrYc3&^m";
+  nova.users.jonathan.enable = true;
+
+  home-manager.users.jonathan = {
+    programs.bash.enable = true;
+    nova.macros.enable = true;
+  };
 }
 
