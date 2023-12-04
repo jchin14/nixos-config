@@ -35,15 +35,15 @@
     mission-center
     wget
     ookla-speedtest
-    powertop
-    thermald
-    tlp
-    auto-cpufreq
+    #powertop
+    #thermald
+    #tlp
+    #auto-cpufreq
     caprine-bin
     displaylink
     geekbench
     #quartus-prime-lite
-    sqldeveloper
+    #sqldeveloper
     cpuid
     pinta
     tetex
@@ -62,7 +62,7 @@
     parsec-bin
     #intel-media-driver
     #intel-gpu-tools
-    auto-cpufreq
+    #auto-cpufreq
     p3x-onenote
     blackbox-terminal
     plex-media-player
@@ -83,8 +83,8 @@
 
   #home-manager.users.jonathan
 
-  systemd.packages = [ pkgs.auto-cpufreq ];
-  systemd.services.auto-cpufreq.path = with pkgs; [ bash coreutils ];
+  #systemd.packages = [ pkgs.auto-cpufreq ];
+  #systemd.services.auto-cpufreq.path = with pkgs; [ bash coreutils ];
 
   imports =
     [ 
@@ -94,23 +94,23 @@
       ./nixfiles/nixos
     ];
 
-  services.tlp.settings = {
-    START_CHARGE_THRESH_BAT1=80;
-    STOP_CHARGE_THRESH_BAT1=95;
-    CPU_DRIVER_OPMODE_ON_AC="active";
-    CPU_DRIVER_OPMODE_ON_BAT="active";
-    CPU_SCALING_GOVERNOR_ON_AC="performance";
-    CPU_SCALING_GOVERNOR_ON_BAT="powersave";
-    CPU_ENERGY_PERF_POLICY_ON_AC="performance";
-    CPU_ENERGY_PERF_POLICY_ON_BAT="balance_power";
-    CPU_BOOST_ON_AC=1;
-    CPU_BOOST_ON_BAT=0;
-    CPU_HWP_DYN_BOOST_ON_AC=1;
-    CPU_HWP_DYN_BOOST_ON_BAT=1;
-    RESTORE_DEVICE_STATE_ON_STARTUP=1;
-    DEVICES_TO_DISABLE_ON_STARTUP="bluetooth";
-    PCIE_ASPM_ON_BAT="powersupersave";
-  };
+  #services.tlp.settings = {
+    #START_CHARGE_THRESH_BAT1=80;
+    #STOP_CHARGE_THRESH_BAT1=95;
+    #CPU_DRIVER_OPMODE_ON_AC="active";
+    #CPU_DRIVER_OPMODE_ON_BAT="active";
+    #CPU_SCALING_GOVERNOR_ON_AC="performance";
+    #CPU_SCALING_GOVERNOR_ON_BAT="powersave";
+    #CPU_ENERGY_PERF_POLICY_ON_AC="performance";
+    #CPU_ENERGY_PERF_POLICY_ON_BAT="balance_power";
+    #CPU_BOOST_ON_AC=1;
+    #CPU_BOOST_ON_BAT=0;
+    #CPU_HWP_DYN_BOOST_ON_AC=1;
+    #CPU_HWP_DYN_BOOST_ON_BAT=1;
+    #RESTORE_DEVICE_STATE_ON_STARTUP=1;
+    #DEVICES_TO_DISABLE_ON_STARTUP="bluetooth";
+    #PCIE_ASPM_ON_BAT="powersupersave";
+  #};
 
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
